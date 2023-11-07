@@ -1,3 +1,4 @@
+"""Modelo de administraciópn de los modelos"""
 from django.contrib import admin
 
 # Register your models here.

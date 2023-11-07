@@ -73,15 +73,13 @@ class Diagrama(models.Model):
         verbose_name_plural = "Diagramas"
 
     def __str__(self):
-        return self.nombre
+        return f'{self.nombre}'
 
 
 class Hito(models.Model):
     """Documentación que se ha de hacer durante el desarrollo del proceso"""
     pdd = models.BooleanField('PDD', default=False)
     pdd_fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
-    sdd = models.BooleanField('SDD', default=False)
-    sdd_fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
     pipma = models.BooleanField('PIPMA', default=False)
     pipma_fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
     ttd = models.BooleanField('TTD', default=False)
@@ -102,6 +100,7 @@ class Hito(models.Model):
     id_automatismo = models.ForeignKey(Automatismo, on_delete=models.CASCADE)
 
     class Meta:
+        """Devuelve el plural de la clase"""
         verbose_name_plural = "Hitos"
 
 
@@ -110,7 +109,7 @@ class Objeto(models.Model):
     nombre = models.CharField('Nombre', max_length=75, blank=False, null=False)
     xml = models.TextField('XML', blank=True, null=True)
     descripcion = models.TextField('Descripción', blank=True, null=True)
-    id_automatismo = models.ForeignKey(Automatismo, on_delete=models.CASCADE)
+    id_sistema = models.ForeignKey(Sistema, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = "Objetos"
